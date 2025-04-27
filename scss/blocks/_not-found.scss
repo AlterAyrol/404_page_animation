@@ -1,0 +1,441 @@
+.not-found {
+  overflow: hidden;
+
+  &__wrapper {
+    min-height: 100vh;
+    padding: 30px 0;
+    position: relative;
+  }
+
+  &__star {
+    background-color: $color-white;
+    height: 8px;
+    left: 5%;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    width: 8px;
+    transform: translateY(-20px);
+
+    &:first-child {
+      animation: StarDropMove 2.0s linear infinite 0.0s; // 0
+    }
+
+    &:nth-child(2) {
+      left: 15%;
+      animation: StarDropMove 2.0s linear infinite 0.8s; // 4
+    }
+
+    &:nth-child(3) {
+      left: 25%;
+      animation: StarDropMove 2.0s linear infinite 1.8s; // 9
+    }
+
+    &:nth-child(4) {
+      left: 35%;
+      animation: StarDropMove 2.0s linear infinite 0.2s; // 1
+    }
+
+    &:nth-child(5) {
+      left: 45%;
+      animation: StarDropMove 2.0s linear infinite 1.2s; // 6
+    }
+
+    &:nth-child(6) {
+      left: 55%;
+      animation: StarDropMove 2.0s linear infinite 1.6s; // 8
+    }
+
+    &:nth-child(7) {
+      left: 65%;
+      animation: StarDropMove 2.0s linear infinite 0.4s; // 2
+    }
+
+    &:nth-child(8) {
+      left: 75%;
+      animation: StarDropMove 2.0s linear infinite 1.0s; // 5
+    }
+
+    &:nth-child(9) {
+      left: 85%;
+      animation: StarDropMove 2.0s linear infinite 1.4s; // 7
+    }
+
+    &:nth-child(10) {
+      left: 95%;
+      animation: StarDropMove 2.0s linear infinite 0.6s; // 3
+    }
+  }
+
+  &__boss {
+    left: calc(50% - 220px);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    opacity: 0;
+    transform: translateY(-440px);
+
+    // появление
+    animation: bossSlideInDown 1.8s ease-in 1.5s 1 forwards,
+      // получение урона
+      bossAttacked 0.5s ease-in 3.5s 1 forwards,
+      bossAttacked 0.5s ease-in 4.1s 1 forwards,
+      bossAttacked 0.5s ease-in 4.7s 1 forwards,
+      // босс умер
+      bossDie 2.0s ease-in 5.3s 1 forwards;
+  }
+
+  &__link {
+    display: flex;
+    overflow: hidden;
+
+    transform: translateY(-64px);
+    animation: iconSlideInDown 0.2s ease-in 0.6s 1 forwards;
+  }
+
+  &__icon {
+    height: 32px;
+    width: 180px;
+  }
+
+  &__note-inner {
+    bottom: 30px;
+    font-size: 60px;
+    line-height: 60px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+
+    transform: translateY(-900px);
+    animation: noteSlideInDown 1.2s ease-in 0.3s 1 forwards;
+  }
+
+  &__note {
+    display: flex;
+  }
+
+  &__note-accent {
+    color: $color-light-green;
+  }
+
+  &__bullet {
+    background-color: $color-light-green;
+    bottom: 200px;
+    display: flex;
+    height: 20px;
+    left: calc(50% - 7px);
+    position: absolute;
+    width: 20px;
+
+    opacity: 0;
+
+    animation: bulletFire 0.2s ease-in 3.4s 1,
+      bulletFire 0.2s ease-in 4.0s 1,
+      bulletFire 0.2s ease-in 4.6s 1;
+  }
+
+  &__rocket {
+    bottom: 0;
+    left: calc(50% - 105px);
+    position: absolute;
+
+    opacity: 0;
+    transform: translateY(250px);
+
+    animation: rocketSlideInUp 1.0s ease-in 2.3s 1 forwards;
+  }
+
+  &__rocket-fire-external {
+    animation: rocketFireWork 0.3s ease-in 3.3s infinite alternate;
+  }
+
+  &__rocket-fire-midle {
+    animation: rocketFireWork 0.3s ease-in 3.4s infinite alternate;
+  }
+
+  &__rocket-fire-internal {
+    animation: rocketFireWork 0.3s ease-in 3.5s infinite alternate;
+  }
+
+  &__rocket-fire-dott {
+    animation: rocketFireWork 0.2s ease-in 3.3s infinite alternate;
+  }
+
+  &__rocket-fire-dott2 {
+    animation: rocketFireWork 0.2s ease-in 3.4s infinite alternate;
+  }
+
+  &__return {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+    clip-path: circle(0.4% at 100% 0);
+    animation: returnGrow 1.5s ease-in 7.0s 1 forwards;
+
+    &::before {
+      background-color: $color-light-green;
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &__btn {
+    background-color: $color-black-pearl;
+    border-radius: 8px;
+    color: $color-white;
+    display: flex;
+    font-family: $ff-play;
+    font-size: 22px;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 32px;
+    padding: 16px;
+    width: 340px;
+    position: relative;
+
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    animation: returnBtnFadeIn 0.6s ease-in 8.4s 1 forwards;
+  }
+}
+
+@keyframes StarDropMove {
+  0% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(1000px);
+  }
+}
+
+@keyframes iconSlideInDown {
+  0% {
+    transform: translateY(-64px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes noteSlideInDown {
+  0% {
+    transform: translateY(-900px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bossSlideInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-440px);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform-origin: center;
+    transform: rotate(10deg) scale(1.2);
+  }
+
+  60% {
+    opacity: 1;
+    transform-origin: center;
+    transform: rotate(0) scale(1);
+  }
+
+  70% {
+    opacity: 1;
+    transform-origin: center;
+    transform: rotate(-10deg) scale(1.2);
+  }
+
+  80% {
+    opacity: 1;
+    transform-origin: center;
+    transform: rotate(0) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-140px);
+  }
+}
+
+@keyframes bossAttacked {
+  0% {
+    transform: translateY(-140px);
+  }
+
+  10% {
+    filter: brightness(1.3);
+  }
+
+  20% {
+    transform-origin: center;
+    transform: translateY(-120px) rotate(-10deg) scale(1.2);
+    filter: brightness(1.0);
+  }
+
+  30% {
+    filter: brightness(0.7);
+  }
+
+  40% {
+    transform: translateY(-140px) rotate(0) scale(1);
+    filter: brightness(1.0);
+  }
+
+  50% {
+    transform-origin: center;
+    transform: translateY(-120px) rotate(10deg) scale(1.2);
+    filter: brightness(1.3);
+  }
+
+  60% {
+    filter: brightness(1.0);
+  }
+
+  70% {
+    transform: translateY(-140px) rotate(0) scale(1);
+    filter: brightness(0.7);
+  }
+
+  80% {
+    filter: brightness(1.0);
+  }
+
+  90% {
+    transform: translateY(-140px) rotate(0) scale(0.9);
+    filter: brightness(1.3);
+  }
+
+  100% {
+    transform: translateY(-140px) rotate(0) scale(1.0);
+    filter: brightness(1.0);
+  }
+}
+
+@keyframes bossDie {
+  0% {
+    transform: translateY(-140px);
+    clip-path: circle(50% at 50% 50%);
+    filter: brightness(1.0);
+  }
+  20% {
+    transform: translateY(0);
+    clip-path: circle(40% at 50% 50%);
+    filter: brightness(2.0) invert(25%)
+  }
+  40% {
+    transform: translateY(0);
+    clip-path: circle(30% at 50% 50%);
+    filter: brightness(3.0) invert(50%)
+  }
+  60% {
+    transform: translateY(0);
+    clip-path: circle(20% at 50% 50%);
+    filter: brightness(1.0) invert(75%)
+  }
+  80% {
+    transform: translateY(0);
+    clip-path: circle(10% at 50% 50%);
+    filter: brightness(0.5) invert(100%)
+  }
+  100% {
+    transform: translateY(0);
+    clip-path: circle(0% at 50% 50%);
+    filter: brightness(0);
+  }
+}
+
+@keyframes rocketSlideInUp {
+  0% {
+    transform: translateY(250px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rocketFireWork {
+  0% {
+    filter: brightness(1);
+  }
+
+  25% {
+    filter: brightness(1.1);
+  }
+
+  50% {
+    filter: brightness(1);
+  }
+
+  75% {
+    filter: brightness(0.9);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes bulletFire {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-800px);
+  }
+}
+
+@keyframes returnGrow {
+  0% {
+    clip-path: circle(0.4% at 100% 0);
+    pointer-events: none;
+  }
+  100% {
+    clip-path: circle(141.2% at 100% 0);
+    pointer-events: auto;
+  }
+}
+
+@keyframes returnBtnFadeIn {
+  0% {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
